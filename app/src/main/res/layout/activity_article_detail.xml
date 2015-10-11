@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.jaeger.listenrain.widget.CustomScrollView
+        android:id="@+id/sv_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@drawable/ic_default_cover"
+                fresco:placeholderImageScaleType="centerInside"/>
+
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/iv_cover"
+                android:isScrollContainer="true"
+                android:lineSpacingExtra="5dp"
+                android:padding="16dp"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+
+    </com.jaeger.listenrain.widget.CustomScrollView>
+
+    <com.jaeger.listenrain.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
