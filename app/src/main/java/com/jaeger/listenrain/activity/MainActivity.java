@@ -24,9 +24,6 @@ import java.util.Map;
 public class MainActivity extends BaseActivity {
     private ViewPager vpHomePage;
     private TabLayout tabPageTitle;
-    private RelativeLayout rlPlayControl;
-    private ImageView ivPlayStatus;
-    private boolean isPlaying;
     private Map<Integer, Fragment> mapFragment = new HashMap<>();
     private CharSequence[] pageTitle = {"素锦", "听雨"};
 
@@ -45,36 +42,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         vpHomePage = (ViewPager) findViewById(R.id.vp_home_page);
         tabPageTitle = (TabLayout) findViewById(R.id.tab_page_title);
-
-//        rlPlayControl = (RelativeLayout) findViewById(R.id.rl_play_control);
-//        ivPlayStatus = (ImageView) findViewById(R.id.iv_play_status);
-
     }
 
     @Override
     protected void setViewStatus() {
         vpHomePage.setAdapter(new HomePageAdapter(getSupportFragmentManager()));
         tabPageTitle.setupWithViewPager(vpHomePage);
-
-//        rlPlayControl.setOnClickListener(this);
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-//            case R.id.rl_play_control:
-//                isPlaying = !isPlaying;
-//                if (isPlaying) {
-//                    ivPlayStatus.setImageResource(R.drawable.ic_play);
-//                } else {
-//                    ivPlayStatus.setImageResource(R.drawable.ic_pause);
-//                }
-//                break;
-
-        }
-
-    }
-
     private void smoothSwitchScreen() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             ViewGroup rootView = ((ViewGroup) this.findViewById(android.R.id.content));
