@@ -1,6 +1,5 @@
 package com.jaeger.listenrain.fragment;
 
-import android.animation.ValueAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -53,22 +52,18 @@ public class SujinFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
             public void onRefreshing() {
+                page = 0;
+                articles.clear();
                 getArticleList();
             }
 
-            @Override
-            public void completeRefresh() {
-
-            }
-        });
-
-        refreshLayout.setOnLoadListener(new RefreshLayout.OnLoadListener() {
-            @Override
             public void onLoading() {
                 page++;
                 getArticleList();
             }
+
         });
+
     }
 
     @Override
@@ -89,7 +84,7 @@ public class SujinFragment extends BaseFragment {
                     for (AVObject avObject : list) {
                         String title = avObject.getString("title");
                         String content = avObject.getString("content");
-                        String coverUrl = avObject.getAVFile("cover").getThumbnailUrl(true, 360, 360);
+                        String coverUrl = avObject.getAVFile("cover").getUrl();
                         String date = avObject.getString("date");
                         article = new Article(title, content, coverUrl, date);
                         articles.add(article);
@@ -97,17 +92,6 @@ public class SujinFragment extends BaseFragment {
 
                     adapter.notifyDataSetChanged();
                     refreshLayout.finishRefreshing();
-                    ValueAnimator mUpBackAnimator = ValueAnimator.ofInt(0, 50);
-                    final int temp = 0;
-                    mUpBackAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator animation) {
-                            int value = (int) animation.getAnimatedValue() - temp;
-//                            temp = (int) animation.getAnimatedValue();
-                        }
-                    });
-//                    rvArticles.scrollTo(0, 50);
-
                 } else {
                     showToastS(e.getMessage());
                 }

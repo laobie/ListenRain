@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-
 /**
  * Created by Jaeger on 15-7-22.
  * RefreshLayout
@@ -21,7 +20,6 @@ public class RefreshLayout extends FrameLayout {
     private int Mode = PULL_DOWN_MODE;
     private Context context;
     private OnRefreshListener onRefreshListener;
-    private OnLoadListener onLoadListener;
     private View childView;
     private HeaderView headerView;
     private FooterView footerView;
@@ -201,8 +199,8 @@ public class RefreshLayout extends FrameLayout {
                 footerView.requestLayout();
                 if (val == -HEADER_HEIGHT) {
                     footerView.startRefresh();
-                    if (onLoadListener != null) {
-                        onLoadListener.onLoading();
+                    if (onRefreshListener != null) {
+                        onRefreshListener.onLoading();
                     }
                 }
             }
@@ -227,9 +225,6 @@ public class RefreshLayout extends FrameLayout {
     }
 
     public void finishRefreshing() {
-        if (onRefreshListener != null) {
-            onRefreshListener.completeRefresh();
-        }
         switch (Mode) {
             case PULL_DOWN_MODE:
                 headerView.setIsRefresh(false);
@@ -250,12 +245,10 @@ public class RefreshLayout extends FrameLayout {
     public interface OnRefreshListener {
         void onRefreshing();
 
-        void completeRefresh();
+//        void completeRefresh();
 
-    }
-
-    public interface OnLoadListener {
         void onLoading();
+
     }
 
 
@@ -288,7 +281,4 @@ public class RefreshLayout extends FrameLayout {
         mUpBackAnimator.start();
     }
 
-    public void setOnLoadListener(OnLoadListener onLoadListener) {
-        this.onLoadListener = onLoadListener;
-    }
 }

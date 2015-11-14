@@ -14,6 +14,6 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Fresco.initialize(this);
-        AVOSCloud.initialize(this, "PxdSUkFDb5xhl7OO3HsfcFFS", "2w9ahspmfvfi6mjFmhDrGjFf");
+        AVOSCloud.initialize(this, "39GbpyDQQ3aqNOwrrAcVwzNP", "0lz3QXUthcqm8EKUulT6Y9CT");
     }
 }
