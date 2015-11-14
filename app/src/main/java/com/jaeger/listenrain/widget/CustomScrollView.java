@@ -1,11 +1,7 @@
 package com.jaeger.listenrain.widget;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ScrollView;
 
 /**
@@ -24,18 +20,13 @@ public class CustomScrollView extends ScrollView {
         super(context, attrs);
     }
 
-    public void setScrollListener(OnScrollListener onScrollListener) {
-        this.onScrollListener = onScrollListener;
-    }
-
-    public interface OnScrollListener {
-        void onScrollChanged(int x, int y, int oldX, int OldY);
-    }
-
     public CustomScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
+    public void setScrollListener(OnScrollListener onScrollListener) {
+        this.onScrollListener = onScrollListener;
+    }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -48,5 +39,9 @@ public class CustomScrollView extends ScrollView {
         if (onScrollListener != null) {
             onScrollListener.onScrollChanged(l, t, oldl, oldt);
         }
+    }
+
+    public interface OnScrollListener {
+        void onScrollChanged(int x, int y, int oldX, int OldY);
     }
 }
