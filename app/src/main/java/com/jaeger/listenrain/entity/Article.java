@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by Jaeger on 15/9/29.
- * OneDay
+ * ListenRain
  */
 public class Article implements Serializable {
     private String title;

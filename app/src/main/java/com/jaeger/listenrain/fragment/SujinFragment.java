@@ -1,5 +1,6 @@
 package com.jaeger.listenrain.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,8 +10,10 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.jaeger.listenrain.R;
+import com.jaeger.listenrain.activity.ArticleDetailActivity;
 import com.jaeger.listenrain.adapter.ArticleItemAdapter;
 import com.jaeger.listenrain.base.BaseFragment;
+import com.jaeger.listenrain.base.BaseRecycleAdapter;
 import com.jaeger.listenrain.entity.Article;
 import com.jaeger.listenrain.widget.RefreshLayout;
 
@@ -19,7 +22,7 @@ import java.util.List;
 
 /**
  * Created by Jaeger on 15/8/6.
- * Schoolmate
+ * ListenRain
  */
 public class SujinFragment extends BaseFragment {
     private RefreshLayout refreshLayout;
@@ -62,6 +65,14 @@ public class SujinFragment extends BaseFragment {
                 getArticleList();
             }
 
+        });
+        adapter.setOnItemClickListener(new BaseRecycleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(context, ArticleDetailActivity.class);
+                intent.putExtra("article", articles.get(position));
+                context.startActivity(intent);
+            }
         });
 
     }
