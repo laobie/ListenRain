@@ -7,11 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.jaeger.listenrain.R;
 import com.jaeger.listenrain.base.BaseActivity;
@@ -25,7 +22,7 @@ public class MainActivity extends BaseActivity {
     private ViewPager vpHomePage;
     private TabLayout tabPageTitle;
     private Map<Integer, Fragment> mapFragment = new HashMap<>();
-    private CharSequence[] pageTitle = {"素锦", "听雨"};
+    private String[] pageTitle;
 
     @Override
     protected void initIntentParam(Intent intent) {
@@ -35,6 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void beforeInitView() {
         smoothSwitchScreen();
+        pageTitle = new String[]{getString(R.string.sujin), getString(R.string.listen_rain)};
     }
 
     @Override
@@ -49,6 +47,7 @@ public class MainActivity extends BaseActivity {
         vpHomePage.setAdapter(new HomePageAdapter(getSupportFragmentManager()));
         tabPageTitle.setupWithViewPager(vpHomePage);
     }
+
     private void smoothSwitchScreen() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             ViewGroup rootView = ((ViewGroup) this.findViewById(android.R.id.content));
@@ -58,6 +57,22 @@ public class MainActivity extends BaseActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+    }
+
+    private Fragment switchFragment(int position) {
+        Fragment fragment = mapFragment.get(position);
+        if (fragment == null) {
+            switch (position) {
+                case 0:
+                    fragment = new SujinFragment();
+                    break;
+                case 1:
+                    fragment = new ListenFragment();
+                    break;
+            }
+            mapFragment.put(position, fragment);
+        }
+        return fragment;
     }
 
     private class HomePageAdapter extends FragmentStatePagerAdapter {
@@ -80,21 +95,5 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             return pageTitle[position];
         }
-    }
-
-    private Fragment switchFragment(int position) {
-        Fragment fragment = mapFragment.get(position);
-        if (fragment == null) {
-            switch (position) {
-                case 0:
-                    fragment = new SujinFragment();
-                    break;
-                case 1:
-                    fragment = new ListenFragment();
-                    break;
-            }
-            mapFragment.put(position, fragment);
-        }
-        return fragment;
     }
 }

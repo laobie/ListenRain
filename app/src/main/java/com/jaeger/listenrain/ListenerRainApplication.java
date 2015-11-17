@@ -9,7 +9,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  * Created by Jaeger on 15/9/29.
  * ListenRain
  */
-public class BaseApplication extends Application {
+public class ListenerRainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();

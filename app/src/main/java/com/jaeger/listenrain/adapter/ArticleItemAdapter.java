@@ -2,6 +2,7 @@ package com.jaeger.listenrain.adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -27,8 +28,8 @@ public class ArticleItemAdapter extends BaseRecycleAdapter {
     }
 
     @Override
-    public ArticleBaseViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new ArticleBaseViewHolder(inflater.inflate(R.layout.list_item_article, viewGroup, false));
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ArticleBaseViewHolder(inflater.inflate(R.layout.list_item_article, parent, false));
     }
 
     @Override

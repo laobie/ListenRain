@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">听雨</string>
     <string name="action_settings">Settings</string>
+    <string name="sujin">素锦</string>
+    <string name="listen_rain">听雨</string>
 </resources>
