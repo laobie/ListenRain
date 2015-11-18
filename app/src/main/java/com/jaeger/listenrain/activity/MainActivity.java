@@ -75,6 +75,14 @@ public class MainActivity extends BaseActivity {
         return fragment;
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
+    }
+
     private class HomePageAdapter extends FragmentStatePagerAdapter {
 
         public HomePageAdapter(FragmentManager fm) {
